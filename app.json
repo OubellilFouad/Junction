@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "junction"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,5 +33,13 @@
         "projectId": "eb968830-9618-42e9-85a3-60251c644d27"
       }
     }
-  }
+  },
+  "plugins": [
+    [
+      "expo-dev-client",
+      {
+        "scheme": "exp://192.168.1.67:19000"
+      }
+    ]
+  ]
 }

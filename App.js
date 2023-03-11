@@ -1,35 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
-import bg from './assets/bg.png';
-import { BlurView } from "@react-native-community/blur";
+import { NavigationContainer } from '@react-navigation/native';
+import { ImageBackground, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Provider } from './context/Provider';
+import Home from './screens/Home';
+import 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from './screens/Login';
 
 export default function App() {
+  const Nav = createStackNavigator();
   return (
-    <ImageBackground source={bg} resizeMode="cover" style={styles.container}>
-      <BlurView
-        blurType="light"
-        blurAmount={10}
-        reducedTransparencyFallbackColor="white"
-      />
-      <View
-      style={{
-        height: 110,
-        width: 73,
-        borderRadius: 200/2,
-        backgroundColor: '#7030DF',
-        transform: [{rotateZ: '70deg'}],
-        position: 'absolute',
-        bottom: -30,
-        left: -10,
-      }}/>
-    </ImageBackground>
+    <Provider>
+        <NavigationContainer>
+          <Nav.Navigator>
+            <Nav.Screen name='Login' component={Login} options={{
+              headerShown: false,
+            }} />
+            <Nav.Screen name='Home' component={Home} options={{
+              headerShown: false,
+            }} />
+          </Nav.Navigator>
+        </NavigationContainer>
+      <StatusBar style='light'/>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
