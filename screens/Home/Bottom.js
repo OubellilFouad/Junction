@@ -5,12 +5,17 @@ import keyboard from '../../assets/keyboard.png';
 import mic from '../../assets/mic.png';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useProvider } from '../../context/Provider';
 
 const Bottom = () => {
+  const {makeCommand} = useProvider();
   const [open,setOpen] = useState(false);
+  const [text,setText] = useState('');
   const input = useRef();
   const handlePress = () => {
     setOpen(!open);
+    console.log(text);
+    makeCommand(text);
     Keyboard.dismiss()
   }
   return (
@@ -59,6 +64,7 @@ const Bottom = () => {
             ref={input}
             placeholder='Type something'
             placeholderTextColor={'#9D9D9D'}
+            onChangeText={text => setText(text)}
             style={{
                 padding: 20,
                 paddingLeft: open?20:0,

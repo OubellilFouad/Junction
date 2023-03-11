@@ -4,7 +4,7 @@ import { Provider } from './context/Provider';
 import Home from './screens/Home';
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './screens/Login';
+import Splash from './screens/Splash';
 
 export default function App() {
   const Nav = createStackNavigator();
@@ -12,10 +12,10 @@ export default function App() {
     <Provider>
         <NavigationContainer>
           <Nav.Navigator>
-            <Nav.Screen name='Login' component={Login} options={{
+            <Nav.Screen name='Splash' component={Splash} options={{
               headerShown: false,
             }} />
-            <Nav.Screen name='Home' component={Home} options={{
+            <Nav.Screen name='Home' component={Home} initialParams={{ path: 'Main' }} options={{
               headerShown: false,
             }} />
           </Nav.Navigator>
